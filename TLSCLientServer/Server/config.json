@@ -1,0 +1,19 @@
+{
+  "ListenAddr": "0.0.0.0",
+  "ListenPort": 5555,
+  "TlsEnabled": true,
+  "TlsCrt": "_certificate.crt",
+  "TlsKey": "_private.key",
+  "Filters": [    
+    {
+      "field": "type",
+      "operator": "equals",
+      "value": "event"
+    },
+    {
+      "field": "level",
+      "operator": "not_equals",
+      "value": "debug"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+﻿services:
+  clientservertlsjsonfilter:
+    image: clientservertlsjsonfilter
+    build:
+      context: .
+      dockerfile: ClientServerTLSJSONFilter/Dockerfile
