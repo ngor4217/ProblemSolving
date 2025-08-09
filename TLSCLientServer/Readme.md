@@ -1,7 +1,7 @@
 TLS client/Server example.
 
 
-Example certs, config files, test data and  included.
+Example Certs, Config files, Test Data and SystemD unit included.
 
 
 For AOT build use:
