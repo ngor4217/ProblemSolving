@@ -12,8 +12,6 @@ public static class Program
     
     public async static Task Main(string [] args)
     {
-        
-        
         try
         {
             var configJson = File.ReadAllText("config.json");

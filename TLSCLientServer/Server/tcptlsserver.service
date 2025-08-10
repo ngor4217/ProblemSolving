@@ -1,0 +1,13 @@
+[Unit]
+Description=TCP-TLS Server
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/usr/sbin/tcptlsserver
+ExecStart=/usr/sbin/tcptlsserver/Server
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

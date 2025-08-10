@@ -33,6 +33,7 @@ public static class Program
             
             using var client = new Client(config);
             await client.Connect();
+            Console.Out.WriteLine($"Connected to {config.ServerHost}:{config.ServerPort}");
             
             foreach (var line in lines)
             {
