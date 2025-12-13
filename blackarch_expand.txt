@@ -1,6 +1,4 @@
-copy left:
-usr
-mount --mkdir /dev/sda3 /mnt
+mount --mkdir /dev/sda3 /mnt/to
 ;mount --mkdir /dev/sda1 /mnt/boot
 ; mount --mkdir /dev/sdb /mnt/from
 arch-chroot
@@ -9,17 +7,16 @@ arch-chroot
 ; mkdir bak
 ; cp -ar etc bak
 
-rsync -axHAWX --numeric-ids --info=progress2 /mnt/from/ /mnt/to/ 
+RSYNC
+rm -rf /mnt/to/etc; rm -rf /mnt/to/man ; rm -rf /mnt/to/root; rm -rf /mnt/to/var; rm -rf /mnt/to/opt; rm -rf /mnt/to/usr 
+; rsync -aHAWX  --info=progress2 /mnt/from/etc /mnt/to 
+; rsync -aHAWX  --info=progress2 /mnt/from/man /mnt/to 
+; rsync -aHAWX  --info=progress2 /mnt/from/root /mnt/to 
+; rsync -aHAWX  --info=progress2 /mnt/from/var /mnt/to
+; rsync -aHAWX  --info=progress2 /mnt/from/opt /mnt/to #4g empty
+; rsync -aHAWX  --info=progress2 /mnt/from/usr /mnt/to #54g 
 
-; rsync -axIHAWX --ignore-times --numeric-ids --info=progress2 /mnt/from/etc /mnt/to/etc  #63
-; rsync -axIHAWX --ignore-times --numeric-ids --info=progress2 /mnt/from/man /mnt/to/man #14
-; rsync -axIHAWX --ignore-times --numeric-ids --info=progress2 /mnt/from/root /mnt/to/root  #700m
-; rsync -axIHAWX --ignore-times --numeric-ids --info=progress2 /mnt/from/var /mnt/to/var #400m 700m
---ignore-existing ??? --ignore-times(force replace)
-rsync -axHAWX --numeric-ids --info=progress2 /mnt/from/opt /mnt/to/opt #4g empty
-rsync -aHAWX --size-only --info=progress2 /mnt/from/usr/ /mnt/to/usr  #54g 
-
-
+CP
 rm -rf /mnt/to/etc; rm -rf /mnt/to/man ; rm -rf /mnt/to/root; rm -rf /mnt/to/var; rm -rf /mnt/to/opt; rm -rf /mnt/to/usr 
 cp -ar /mnt/from/etc /mnt/to/etc 
 cp -ar /mnt/from/man /mnt/to/man 
@@ -28,33 +25,20 @@ cp -ar /mnt/from/man /mnt/to/man
 ;cp -ar /mnt/from/opt /mnt/to/opt
 ;cp -ar /mnt/from/usr /mnt/to/usr 
  
-
+DU chechsum
 ; du -shb /mnt/from/etc/passwd; du -shb /mnt/to/etc/passwd 
 ; du -shb /mnt/from/etc/shadow; du -shb /mnt/to/etc/shadow 
 ; du -shb /mnt/from/etc/gshadow; du -shb /mnt/to/etc/gshadow
-du -sh /mnt/to/root ; du -sh /mnt/from/rootя                
-du -sh /mnt/to/var; du -sh /mnt/from/var
 
+RESTORE
 ; cp -ar /mnt/to/bak/etc/fstab /mnt/to/etc
 ; cp -ar /mnt/to/bak/etc/grub.d /mnt/to/etc
 ; cp -ar /mnt/to/bak/etc/default/grub /mnt/to/etc/default
+; cp -ar /mnt/to/bak/usr/lib/modules /mnt/to/usr/lib
 ; du -shb /mnt/to/bak/etc/fstab; du -shb /mnt/to/etc/fstab 
 ; du -shb /mnt/to/bak/etc/grub.d; du -shb /mnt/to/etc/grub.d 
 ; du -shb /mnt/to/bak/etc/default/grub; du -shb /mnt/to/etc/default/grub 
-
-
-
-du -sh /mnt/to/bak/*
-
-
-
-
-
-/mnt/from/var
-/mnt/from/version
-/var/cache/pacman/pkg/
-/var/lib/pacman/sync/
-/mnt/to/usr/share/binaryninja-demo/plugins/lldb/bin/lldb-server
+; du -shb /mnt/to/bak/usr/lib/modules; du -shb /mnt/to/usr/lib/modules 
 
 
 
